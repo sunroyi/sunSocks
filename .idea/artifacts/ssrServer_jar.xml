@@ -1,0 +1,26 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="ssrServer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ssrServer</output-path>
+    <root id="archive" name="ssrServer.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/server/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="ssrClient" />
+      <element id="extracted-dir" path="$USER_HOME$/.m2/repository/javax/servlet/javax.servlet-api/3.0.1/javax.servlet-api-3.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.m2/repository/javax/servlet/jsp/javax.servlet.jsp-api/2.3.2-b01/javax.servlet.jsp-api-2.3.2-b01.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.m2/repository/io/netty/netty-transport/4.1.25.Final/netty-transport-4.1.25.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.m2/repository/io/netty/netty-resolver/4.1.25.Final/netty-resolver-4.1.25.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.m2/repository/io/netty/netty-handler-proxy/4.1.25.Final/netty-handler-proxy-4.1.25.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/registry.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.m2/repository/io/netty/netty-handler/4.1.25.Final/netty-handler-4.1.25.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.m2/repository/io/netty/netty-common/4.1.25.Final/netty-common-4.1.25.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.m2/repository/io/netty/netty-codec-http/4.1.25.Final/netty-codec-http-4.1.25.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.m2/repository/org/bouncycastle/bcpkix-jdk15on/1.58/bcpkix-jdk15on-1.58.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.m2/repository/javax/servlet/jstl/1.2/jstl-1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.m2/repository/org/bouncycastle/bcprov-jdk15on/1.58/bcprov-jdk15on-1.58.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.m2/repository/io/netty/netty-buffer/4.1.25.Final/netty-buffer-4.1.25.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.m2/repository/io/netty/netty-codec-socks/4.1.25.Final/netty-codec-socks-4.1.25.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.m2/repository/io/netty/netty-codec/4.1.25.Final/netty-codec-4.1.25.Final.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

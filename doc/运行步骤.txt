@@ -1,0 +1,21 @@
+1.由于需要修改注册表，用到了lib下面的ICE_JNIRegistry.dll文件。
+在Register.java里面的static方法中，有设置dll的路径。
+要执行编译后的jar包就用上面那种方法，调试的时候可以用下面的。
+
+2.我是通过IDEA中的Build Artifacts编译了两个Jar包
+ssrClient.jar是在需要翻墙的本机运行。
+ssrServer.jar是在国外的服务器运行。
+
+3.运行本机的ssrClient.jar:
+（1）把ssrClient.jar和ICE_JNIRegistry.dll放在C:\ssr目录下
+（2）cmd中执行
+>cd c:\ssr
+>java -jar ssrClient.jar
+（3）界面中修改海外服务器的IP地址，点击StartProxy
+（4）修改注册表中的代理服务器好像有延迟，如果不行，就手动在IE里面改代理服务器算了。
+
+4.运行海外服务器的ssrServer.jar:
+（1）环境CentOS+jdk1.8.0_172，配置文件修改好
+（2）复制ssrServer.jar到/usr/local/ssr目录中（没有就自己建）
+（3）执行
+>java -jar ssrServer.jar

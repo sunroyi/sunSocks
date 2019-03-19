@@ -24,13 +24,13 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /*
-1.´´½¨Ò»¸öServerSocket¶ÔÏó£»
-2.µ÷ÓÃServerSocket¶ÔÏóµÄaccept·½·¨£¬µÈ´ıÁ¬½Ó£¬Á¬½Ó³É¹¦»á·µ»ØÒ»¸öSocket¶ÔÏó£¬·ñÔòÒ»Ö±×èÈûµÈ´ı£»
-3.´ÓSocket¶ÔÏóÖĞ»ñÈ¡InputStreamºÍOutputStream×Ö½ÚÁ÷£¬ÕâÁ½¸öÁ÷·Ö±ğ¶ÔÓ¦requestÇëÇóºÍresponseÏìÓ¦£»
-4.´¦ÀíÇëÇó£º¶ÁÈ¡InputStream×Ö½ÚÁ÷ĞÅÏ¢£¬×ª³É×Ö·û´®ĞÎÊ½£¬²¢½âÎö£¬ÕâÀïµÄ½âÎö±È½Ï¼òµ¥£¬½ö½ö»ñÈ¡uri(Í³Ò»×ÊÔ´±êÊ¶·û)ĞÅÏ¢;
-5.´¦ÀíÏìÓ¦£º¸ù¾İ½âÎö³öÀ´µÄuriĞÅÏ¢£¬´ÓWEB_ROOTÄ¿Â¼ÖĞÑ°ÕÒÇëÇóµÄ×ÊÔ´×ÊÔ´ÎÄ¼ş, ¶ÁÈ¡×ÊÔ´ÎÄ¼ş£¬²¢½«ÆäĞ´Èëµ½OutputStream×Ö½ÚÁ÷ÖĞ£»
-6.¹Ø±ÕSocket¶ÔÏó£»
-7.×ªµ½²½Öè2£¬¼ÌĞøµÈ´ıÁ¬½ÓÇëÇó£»
+1.åˆ›å»ºä¸€ä¸ªServerSocketå¯¹è±¡ï¼›
+2.è°ƒç”¨ServerSocketå¯¹è±¡çš„acceptæ–¹æ³•ï¼Œç­‰å¾…è¿æ¥ï¼Œè¿æ¥æˆåŠŸä¼šè¿”å›ä¸€ä¸ªSocketå¯¹è±¡ï¼Œå¦åˆ™ä¸€ç›´é˜»å¡ç­‰å¾…ï¼›
+3.ä»Socketå¯¹è±¡ä¸­è·å–InputStreamå’ŒOutputStreamå­—èŠ‚æµï¼Œè¿™ä¸¤ä¸ªæµåˆ†åˆ«å¯¹åº”requestè¯·æ±‚å’Œresponseå“åº”ï¼›
+4.å¤„ç†è¯·æ±‚ï¼šè¯»å–InputStreamå­—èŠ‚æµä¿¡æ¯ï¼Œè½¬æˆå­—ç¬¦ä¸²å½¢å¼ï¼Œå¹¶è§£æï¼Œè¿™é‡Œçš„è§£ææ¯”è¾ƒç®€å•ï¼Œä»…ä»…è·å–uri(ç»Ÿä¸€èµ„æºæ ‡è¯†ç¬¦)ä¿¡æ¯;
+5.å¤„ç†å“åº”ï¼šæ ¹æ®è§£æå‡ºæ¥çš„uriä¿¡æ¯ï¼Œä»WEB_ROOTç›®å½•ä¸­å¯»æ‰¾è¯·æ±‚çš„èµ„æºèµ„æºæ–‡ä»¶, è¯»å–èµ„æºæ–‡ä»¶ï¼Œå¹¶å°†å…¶å†™å…¥åˆ°OutputStreamå­—èŠ‚æµä¸­ï¼›
+6.å…³é—­Socketå¯¹è±¡ï¼›
+7.è½¬åˆ°æ­¥éª¤2ï¼Œç»§ç»­ç­‰å¾…è¿æ¥è¯·æ±‚ï¼›
 */
 
 public class Client implements ActionListener{
@@ -47,19 +47,19 @@ public class Client implements ActionListener{
     JTextField txtPassword;
     Boolean blnStart = false;
 
-    static final int workerNumber = 4;//Ïß³Ì³Ø±£ÁôÊıÁ¿£¬·şÎñÆ÷Îª8ºËcpu£¬ºÏÊÊµÄÊıÁ¿Ó¦¸ÃĞ¡ÓÚ8
+    static final int workerNumber = 4;//çº¿ç¨‹æ± ä¿ç•™æ•°é‡ï¼ŒæœåŠ¡å™¨ä¸º8æ ¸cpuï¼Œåˆé€‚çš„æ•°é‡åº”è¯¥å°äº8
 
-    static final int maxPoolSize=256;//×î´óÏß³ÌÊıÁ¿£¬¼´×î´ó²¢·¢Á¿
+    static final int maxPoolSize=256;//æœ€å¤§çº¿ç¨‹æ•°é‡ï¼Œå³æœ€å¤§å¹¶å‘é‡
 
-    static final int maxWorkerInQueue = 2500;// ×î´ó¹¤×÷¶ÓÁĞÊıÁ¿
+    static final int maxWorkerInQueue = 2500;// æœ€å¤§å·¥ä½œé˜Ÿåˆ—æ•°é‡
 
-    static final int waitTime = 10;// ³¬Ê±µÈ´ıÊ±¼ä
+    static final int waitTime = 10;// è¶…æ—¶ç­‰å¾…æ—¶é—´
 
     static final int listenPort=8788;
 
     static final String listenIP="127.0.0.1";
 
-    static final String foreignIP="45.32.77.143";
+    static final String foreignIP="*.*.*.*";
 
     static final ThreadPoolExecutor tpe = new ThreadPoolExecutor(workerNumber,
             maxPoolSize, waitTime, TimeUnit.SECONDS,
@@ -85,7 +85,7 @@ public class Client implements ActionListener{
             public void run() {
                 Proxy proxy = new Proxy();
                 try {
-                    // ÉèÖÃ´úÀí·şÎñÆ÷
+                    // è®¾ç½®ä»£ç†æœåŠ¡å™¨
                     proxy.disableProxy();
                 } catch (RegistryException ex) {
                     ex.printStackTrace();
@@ -103,7 +103,7 @@ public class Client implements ActionListener{
             ThreadClient threadClient = new ThreadClient();
             threadClient.start();
         }else{
-            // ÍË³ö
+            // é€€å‡º
             System.exit(1);
         }
     }
@@ -112,19 +112,19 @@ public class Client implements ActionListener{
         @Override
         public void run() {
             try {
-                // ÉèÖÃ´úÀí·şÎñÆ÷
+                // è®¾ç½®ä»£ç†æœåŠ¡å™¨
                 Proxy proxy = new Proxy();
-                // IE´úÀí·şÎñÆ÷
+                // IEä»£ç†æœåŠ¡å™¨
                 proxy.changeProxy(listenIP, listenPort);
             } catch (Exception ex) {
                 System.out.println("PC Proxy Server Setting Error:" + ex.getMessage());
             }
 
             try {
-                // ¿ªÆô±¾µØ´úÀí·şÎñÆ÷
+                // å¼€å¯æœ¬åœ°ä»£ç†æœåŠ¡å™¨
                 Client client = new Client();
 
-                // µÈ´ıÁ¬½ÓÇëÇó
+                // ç­‰å¾…è¿æ¥è¯·æ±‚
                 client.await(txtServer.getText(), txtPort.getText());
             } catch (Exception ex) {
                 System.out.println("Proxy Client Error:" + ex.getMessage());
@@ -178,11 +178,11 @@ public class Client implements ActionListener{
      * event-dispatching thread.
      */
     private void createAndShowGUI() {
-        //Set the look and feel.---ÉèÖÃÍâ¹Û£¬¿ÉÒÔºöÂÔ
+        //Set the look and feel.---è®¾ç½®å¤–è§‚ï¼Œå¯ä»¥å¿½ç•¥
         initLookAndFeel();
 
         //Make sure we have nice window decorations.
-        //ÉèÖÃÎªfalseµÄ»°£¬¼´Îª²»¸Ä±äÍâ¹Û
+        //è®¾ç½®ä¸ºfalseçš„è¯ï¼Œå³ä¸ºä¸æ”¹å˜å¤–è§‚
         JFrame.setDefaultLookAndFeelDecorated(true);
 
         //Create and set up the window.
@@ -236,25 +236,25 @@ public class Client implements ActionListener{
     }
     
     public void await(String serverIP, String serverPort) throws IOException {
-    	// ´´½¨Ò»¸öServerSocket¶ÔÏó
+    	// åˆ›å»ºä¸€ä¸ªServerSocketå¯¹è±¡
         ServerSocket serverSocket = null;
 
         try {
-            //·şÎñÆ÷Ì×½Ó×Ö¶ÔÏó
+            //æœåŠ¡å™¨å¥—æ¥å­—å¯¹è±¡
             serverSocket = new ServerSocket(listenPort, 1, InetAddress.getByName(listenIP));
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
         }
 
-        // Ñ­»·µÈ´ıÒ»¸öÇëÇó
+        // å¾ªç¯ç­‰å¾…ä¸€ä¸ªè¯·æ±‚
         while (true) {
             Socket socket = null;
             try {
                 socket = serverSocket.accept();
                 socket.setKeepAlive(true);
 
-                //¼ÓÈëÈÎÎñÁĞ±í£¬µÈ´ı´¦Àí
+                //åŠ å…¥ä»»åŠ¡åˆ—è¡¨ï¼Œç­‰å¾…å¤„ç†
                 ClinetProxy cp = new ClinetProxy(socket, serverIP, serverPort);
                 Thread t = new Thread(cp);
                 t.start();
